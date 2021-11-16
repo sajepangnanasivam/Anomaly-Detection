@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------- #
 # 1. When importing libraries, call for the file with: from UNSW_DF import *
 # 2. Initiate with: x_train, x_test, y_train, y_test = XY_import()
-def XY_import():
+def DF_XY():
     import pandas as pd
     try:
         print("( 1 ) Reading Preprocessed CSV files..")
@@ -26,8 +26,8 @@ def XY_import():
         print("Could not load dataset, try again..")
     return x_train, x_test, y_train, y_test
 
-# For importing only train and test
-def train_test_import():
+# Import preprocessed trian and test
+def DF_preprocessed_traintest():
     import pandas as pd
 
     print("Reading Preprocessed CSV Files..")
@@ -38,14 +38,15 @@ def train_test_import():
     print("Dataset Loaded!")
     return train, test
 
-def unprocessed_UNSW_import():
+# Import Original Dataframe
+def DF_original():
     import pandas as pd
-    print("Reading unprocessed CSV Files..")
+    print("Reading Original CSV Files..")
     # importing original dataset
     UNSW_train = pd.read_csv("../Dataset/UNSW_NB15_training-set.csv", delimiter=",")
     UNSW_test = pd.read_csv("../Dataset/UNSW_NB15_testing-set.csv", delimiter=",")
     if UNSW_train.shape < UNSW_test.shape:
-        UNSW_train = UNSW_test
+        UNSW_train, UNSW_test = UNSW_test, UNSW_train
     print('\t Train Shape: ', '\t', UNSW_train.shape)
     print('\t Test Shape: ', '\t', UNSW_test.shape)
     print("Dataset Loaded!")
