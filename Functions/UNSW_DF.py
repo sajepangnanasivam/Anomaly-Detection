@@ -41,12 +41,12 @@ def DF_preprocessed_traintest():
 # For importiong the orignal dataset by train and test
 def DF_original_traintest():
     import pandas as pd
-    print("Reading unprocessed CSV Files..")
+    print("Reading Original CSV Files..")
     # importing original dataset
     UNSW_train = pd.read_csv("../Dataset/UNSW_NB15_training-set.csv", delimiter=",")
     UNSW_test = pd.read_csv("../Dataset/UNSW_NB15_testing-set.csv", delimiter=",")
     if UNSW_train.shape < UNSW_test.shape:
-        UNSW_train = UNSW_test
+        UNSW_train, UNSW_test = UNSW_test, UNSW_train
     print('\t Train Shape: ', '\t', UNSW_train.shape)
     print('\t Test Shape: ', '\t', UNSW_test.shape)
     print("Dataset Loaded!")
