@@ -116,4 +116,35 @@ def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
     
     cb = plt.colorbar()
     cb.ax.tick_params(labelsize=14)
-    plt.title('Correlation Matrix', fontsize=16);
+    plt.title('Correlation Matrix', fontsize=16)
+    
+    
+# --------------------------------------------------------------------------- #
+# --------------------------- DATA ANALYSIS  -------------------------------- #
+# --------------------------------------------------------------------------- #    
+def UNSW_data_analysis_preprocess(train, test):
+    from sklearn import preprocessing 
+    from sklearn.preprocessing import StandardScaler
+        
+    # Defining an empty list
+    categorical = []
+    # Iterating through the columns and checking for columns with datatyp "Object"
+    for col in train.columns:
+        if train[col].dtype == 'object':
+            categorical.append(col) # appending "object" columns to categorical
+            
+    non_categorical_columns = [x for x in train.columns if x not in categorical]
+    
+    # Label encoding the categorical columns
+    le = preprocessing.LabelEncoder()
+    print("(1) \tLabel encoding the columns for training and testing set..")  
+    # Label encoding the columns for the test and training set
+    test[categorical] = test[categorical].apply(le.fit_transform)
+    train[categorical] = train[categorical].apply(le.fit_transform)
+    
+    print("(2) \tApplying Standardscaler on training dataset..")
+    # Applying StandardScaler on train to normalize the values.
+    ss = StandardScaler()
+    train = pd.DataFrame(ss.fit_transform(train),columns = train.columns)
+    print("(3) \tDone!")
+    return train
