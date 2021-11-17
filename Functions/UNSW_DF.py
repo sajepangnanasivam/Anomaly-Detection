@@ -26,7 +26,7 @@ def DF_XY():
         print("Could not load dataset, try again..")
     return x_train, x_test, y_train, y_test
 
-# For importing only train and test
+# For importiong the preprocessed dataset by train and test
 def DF_preprocessed_traintest():
     import pandas as pd
 
@@ -38,6 +38,7 @@ def DF_preprocessed_traintest():
     print("Dataset Loaded!")
     return train, test
 
+# For importiong the orignal dataset by train and test
 def DF_original_traintest():
     import pandas as pd
     print("Reading unprocessed CSV Files..")
