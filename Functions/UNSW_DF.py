@@ -1,10 +1,19 @@
 # --------------------------------------------------------------------------- #
+# ---------------------------- LIBRARY IMPORTS ------------------------------ #
+# --------------------------------------------------------------------------- #
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt 
+from sklearn import preprocessing 
+from sklearn.preprocessing import StandardScaler
+
+# --------------------------------------------------------------------------- #
 # ----------------------------- DATASET IMPORT ------------------------------ #
 # --------------------------------------------------------------------------- #
 # 1. When importing libraries, call for the file with: from UNSW_DF import *
 # 2. Initiate with: x_train, x_test, y_train, y_test = XY_import()
 def DF_XY():
-    import pandas as pd
     try:
         print("( 1 ) Reading Preprocessed CSV files..")
         train = pd.read_csv("../Dataset/train_pp3.csv")
@@ -28,8 +37,6 @@ def DF_XY():
 
 # For importiong the preprocessed dataset by train and test
 def DF_preprocessed_traintest():
-    import pandas as pd
-
     print("Reading Preprocessed CSV Files..")
     train = pd.read_csv("../Dataset/train_pp3.csv")
     test = pd.read_csv("../Dataset/test_pp3.csv")
@@ -40,7 +47,6 @@ def DF_preprocessed_traintest():
 
 # For importiong the orignal dataset by train and test
 def DF_original_traintest():
-    import pandas as pd
     print("Reading Original CSV Files..")
     # importing original dataset
     UNSW_train = pd.read_csv("../Dataset/UNSW_NB15_training-set.csv", delimiter=",")
@@ -101,7 +107,6 @@ def UNSW_predict_KNN_model(K, x_train, y_train):
 # ------------------------------ PLOTTING  ---------------------------------- #
 # --------------------------------------------------------------------------- #
 def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
-    import matplotlib.pyplot as plt 
     f = plt.figure(figsize=(fig_x, fig_y))
     plt.matshow(dataset.corr(), fignum=f.number)
     
@@ -123,9 +128,6 @@ def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
 # --------------------------- DATA ANALYSIS  -------------------------------- #
 # --------------------------------------------------------------------------- #    
 def UNSW_data_analysis_preprocess(train, test):
-    from sklearn import preprocessing 
-    from sklearn.preprocessing import StandardScaler
-            
     # Defining an empty list
     categorical = []
     # Iterating through the columns and checking for columns with datatyp "Object"
