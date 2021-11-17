@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------- #
 # 1. When importing libraries, call for the file with: from UNSW_DF import *
 # 2. Initiate with: x_train, x_test, y_train, y_test = XY_import()
-def XY_import():
+def DF_XY():
     import pandas as pd
     try:
         print("( 1 ) Reading Preprocessed CSV files..")
@@ -27,7 +27,7 @@ def XY_import():
     return x_train, x_test, y_train, y_test
 
 # For importing only train and test
-def train_test_import():
+def DF_preprocessed_traintest():
     import pandas as pd
 
     print("Reading Preprocessed CSV Files..")
@@ -38,7 +38,7 @@ def train_test_import():
     print("Dataset Loaded!")
     return train, test
 
-def unprocessed_UNSW_import():
+def DF_original_traintest():
     import pandas as pd
     print("Reading unprocessed CSV Files..")
     # importing original dataset
