@@ -85,9 +85,11 @@ def UNSW_predict_ANN_model(x_train, y_train, x_test, y_test, model, model_name):
     
     
 # --------------------------------------------------------------------------- #
-# ------------------------------ KNN(Fixed K) ------------------------------- #
+# ------------------------------ KNN Predict -------------------------------- #
 # --------------------------------------------------------------------------- #    
-def UNSW_predict_KNN_model(K, x_train, y_train):
+def UNSW_predict_KNN_model(K, x_train, y_train, x_test, y_test):
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn import metrics
     print("Predicting KNN model with K = %s" %K)
     # Create KNN Classifier
     knn = KNeighborsClassifier(n_neighbors=K)
@@ -98,10 +100,15 @@ def UNSW_predict_KNN_model(K, x_train, y_train):
     
     # Predict the response for test dataset
     y_pred = knn.predict(x_test)
-    print("Done: Predict the response for test dataset..\n")
-    
-    print('Accuracy of the model: ', metrics.accuracy_score(y_test, y_pred))
-    print(classification_report(y_test, y_pred))
+    print("Done: Predict the response for test dataset..")
+    print("------------------------------------------------")
+    print("Accuracy Score: \t", metrics.accuracy_score(y_test, y_pred))
+    print("F1 Score: \t\t", metrics.f1_score(y_test, y_pred))
+    print("Precision Score: \t", metrics.precision_score(y_test, y_pred))
+    print("Recall Score: \t\t", metrics.recall_score(y_test, y_pred))   
+    print("------------------------------------------------")
+    print("Classification report for K = %s" %K)
+    print(metrics.classification_report(y_test, y_pred))
 
 # --------------------------------------------------------------------------- #
 # ------------------------------ PLOTTING  ---------------------------------- #
