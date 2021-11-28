@@ -129,8 +129,47 @@ def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
     cb = plt.colorbar()
     cb.ax.tick_params(labelsize=14)
     plt.title('Correlation Matrix', fontsize=16)
-    
-    
+
+def UNSW_barplot(x_label, y_label, title, x_fig, y_fig):
+    # plot bars or kind='barh' for horizontal bars; adjust figsize accordingly
+    ax = data.plot(kind='bar', 
+                rot=0, 
+                xlabel = x_label, 
+                ylabel = y_label, 
+                title= title, 
+                figsize=(x_fig, y_fig))
+
+    # add some labels
+    for c in ax.containers:
+        # set the bar label
+        ax.bar_label(c, 
+                    fmt='%.2f%%', 
+                    label_type='edge',
+                    rotation=90, 
+                    padding=7)
+
+    # add a little space at the top of the plot for the annotation
+    ax.margins(y=0.15)
+    #ax.xaxis.set_major_locator(matplotlib.ticker.MultipleLocater(1))
+
+    #yRange = np.linspace(0,1,11)
+    #ax.set_yticks(yRange, minor=True)
+
+    # Adding lines inbetween the bars
+    minor_locator = AutoMinorLocator(2)
+    ax.xaxis.set_minor_locator(minor_locator)
+    plt.grid(which='minor')
+
+    # Renaming the X ticks labels
+    NewRange = range(1,16)
+    OldRange = range(0,15)
+    ax.set_xticks(OldRange)
+    ax.set_xticklabels(NewRange)
+
+    # move the legend out of the plot
+    ax.legend(title='Metrics', bbox_to_anchor=(1, 1.02), loc='upper left')
+
+
 # --------------------------------------------------------------------------- #
 # --------------------------- DATA ANALYSIS  -------------------------------- #
 # --------------------------------------------------------------------------- #    
