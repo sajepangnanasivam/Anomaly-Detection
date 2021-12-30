@@ -14,6 +14,11 @@ from sklearn.preprocessing import StandardScaler
 # 1. When importing libraries, call for the file with: from UNSW_DF import *
 # 2. Initiate with: x_train, x_test, y_train, y_test = XY_import()
 def DF_XY():
+    """Loads prprocessed dataset files from pre-defined path, and splits into inputs and output.
+
+    Returns:
+        x_train, x_test, y_train, y_test: preprocessed splitted dataset
+    """
     try:
         print("( 1 ) Reading Preprocessed CSV files..")
         train = pd.read_csv("../Dataset/train_pp3.csv")
@@ -37,6 +42,11 @@ def DF_XY():
 
 # For importiong the preprocessed dataset by train and test
 def DF_preprocessed_traintest():
+    """Loads preprocessed dataset files from pre-defined path.
+
+    Returns:
+        train, test: preprocessed dataset 
+    """
     print("Reading Preprocessed CSV Files..")
     train = pd.read_csv("../Dataset/train_pp3.csv")
     test = pd.read_csv("../Dataset/test_pp3.csv")
@@ -88,6 +98,15 @@ def UNSW_predict_ANN_model(x_train, y_train, x_test, y_test, model, model_name):
 # ------------------------------ KNN Predict -------------------------------- #
 # --------------------------------------------------------------------------- #    
 def UNSW_predict_KNN_model(K, x_train, y_train, x_test, y_test):
+    """Used to initiate KNN model on our prprocessed dataset.
+
+    Args:
+        K (int): K-value for the algorithm
+        x_train (dataframe): input train variable
+        y_train (dataframe): input test variable
+        x_test (dataframe: output train variable
+        y_test (dataframe): output test variable
+    """
     from sklearn.neighbors import KNeighborsClassifier
     from sklearn import metrics
     print("Predicting KNN model with K = %s" %K)
