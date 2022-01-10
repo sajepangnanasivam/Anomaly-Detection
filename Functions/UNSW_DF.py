@@ -133,6 +133,13 @@ def UNSW_predict_KNN_model(K, x_train, y_train, x_test, y_test):
 # ------------------------------ PLOTTING  ---------------------------------- #
 # --------------------------------------------------------------------------- #
 def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
+    """Plots correlation mattrix based on dataset
+
+    Args:
+        dataset (dataframe): dataset to be used
+        fig_x (int): figure x size
+        fig_y (int): figure y size
+    """
     f = plt.figure(figsize=(fig_x, fig_y))
     plt.matshow(dataset.corr(), fignum=f.number)
     
@@ -149,14 +156,26 @@ def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
     cb.ax.tick_params(labelsize=14)
     plt.title('Correlation Matrix', fontsize=16)
 
-def UNSW_barplot(x_label, y_label, title, x_fig, y_fig):
+def UNSW_barplot(data, to_range, x_label, y_label, title, x_size, y_size):
+    """Plots barplot based on x and y labels
+
+    Args:
+        x_label (dataframe): input variables
+        y_label (dataframe): output variables
+        title (string): The title of the plot
+        x_size (int): figure x size
+        y_size (int): figure y size
+    """
+    from matplotlib.ticker import PercentFormatter
+    from matplotlib.ticker import MultipleLocator
+    from matplotlib.ticker import AutoMinorLocator
     # plot bars or kind='barh' for horizontal bars; adjust figsize accordingly
     ax = data.plot(kind='bar', 
                 rot=0, 
                 xlabel = x_label, 
                 ylabel = y_label, 
                 title= title, 
-                figsize=(x_fig, y_fig))
+                figsize=(x_size, y_size))
 
     # add some labels
     for c in ax.containers:
@@ -180,7 +199,7 @@ def UNSW_barplot(x_label, y_label, title, x_fig, y_fig):
     plt.grid(which='minor')
 
     # Renaming the X ticks labels
-    NewRange = range(1,16)
+    NewRange = range(1, to_range)
     OldRange = range(0,15)
     ax.set_xticks(OldRange)
     ax.set_xticklabels(NewRange)
@@ -216,4 +235,17 @@ def UNSW_data_analysis_preprocess(train, test):
     print("(3) \tDone!")
     return train
     
-    
+
+
+
+# --------------------------------------------------------------------------- #
+# ------------------------------ Utility ------------------------------------ #
+# --------------------------------------------------------------------------- #    
+def DF_print_shape(x, y):
+    """Prints out the shape of each dataframe/array
+
+    Args:
+        x (dataframe/array)
+        y (dataframe/array)
+    """
+    print(f"Shape of first data:\t {x.shape} \nShape of second data:\t {y.shape}")
