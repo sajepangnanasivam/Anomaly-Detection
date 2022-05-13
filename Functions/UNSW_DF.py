@@ -132,7 +132,7 @@ def UNSW_predict_KNN_model(K, x_train, y_train, x_test, y_test):
 # --------------------------------------------------------------------------- #
 # ------------------------------ PLOTTING  ---------------------------------- #
 # --------------------------------------------------------------------------- #
-def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
+def UNSW_plot_corr_matrix(dataset, title, fig_x, fig_y, x_label_rot=0, y_label_rot=0):
     """Plots correlation mattrix based on dataset
 
     Args:
@@ -146,15 +146,16 @@ def UNSW_plot_corr_matrix(dataset, fig_x, fig_y):
     plt.xticks(range(dataset.select_dtypes(['number']).shape[1]), 
                dataset.select_dtypes(['number']).columns, 
                fontsize=14, 
-               rotation=45)
+               rotation=x_label_rot)
     
     plt.yticks(range(dataset.select_dtypes(['number']).shape[1]), 
                dataset.select_dtypes(['number']).columns, 
-               fontsize=14)
+               fontsize=14,
+               rotation = y_label_rot)
     
     cb = plt.colorbar()
     cb.ax.tick_params(labelsize=14)
-    plt.title('Correlation Matrix', fontsize=16)
+    plt.title(title, fontsize=16)
 
 def UNSW_barplot(data, to_range, x_label, y_label, title, x_size, y_size):
     """Plots barplot based on x and y labels
